@@ -1,10 +1,13 @@
-function izolirajOkvire( video, dirZaOkvire, zadnjiOkvir )
+function [ listaDatOkvira ] = izolirajOkvire( video, dirZaOkvire, prviOkvir, zadnjiOkvir )
 % izoliraj pojedinaène okvire (kao PNG slike) iz MATLAB video objekta
 
-for i = 1 : zadnjiOkvir
+listaDatOkvira = [];
+
+for i = prviOkvir:zadnjiOkvir
     
     trenutniOkvir = read(video, i);
     okvirIme = sprintf('%.4d.png', i);
+    listaDatOkvira = [listaDatOkvira; okvirIme];
     okvirDat = fullfile(dirZaOkvire, okvirIme);
     imwrite(trenutniOkvir, okvirDat, 'png');
     

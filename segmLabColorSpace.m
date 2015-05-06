@@ -1,4 +1,4 @@
-function segmLabColorSpace( dirZaOkvire, ime )
+function segmLabColorSpace( dirZaOkvire, ime, podrucjaUzoraka, brBoja, pokaziRez )
 % Color-Based Segmentation Using the L*a*b* Color Space
 % https://www.mathworks.com/help/images/examples/color-based-segmentation-using-the-l-a-b-color-space.html
 
@@ -8,22 +8,6 @@ dat = fullfile(dirZaOkvire, ime);
 okvir = imread(dat);
 
 % Calculate Sample Colors in L*a*b* Color Space for Each Region
-
-brBoja = 3; % crvena + zelena + sve ostalo
-
-% ruèno postavljanje
-koordinateUzoraka = [222 89; 230 90; 233 97; 223 96]; % crvena
-koordinateUzoraka(:, :, 2) = [436 167; 445 171; 441 174; 436 169]; % zelena
-koordinateUzoraka(:, :, 3) = [248 198; 283 211; 281 247; 254 237]; % neko podruèje bezveze za ostale boje
-
-podrucjaUzoraka = false([size(okvir, 1) size(okvir, 2) brBoja]);
-
-for i = 1:brBoja
-    podrucjaUzoraka(:, :, i) = roipoly(okvir, koordinateUzoraka(:, 1, i), koordinateUzoraka(:, 2, i));
-end
-
-figure;
-imshow(podrucjaUzoraka(:, :, 1)), title('Podruèje uzorka za crvenu boju');
 
 cform = makecform('srgb2lab');
 labOkvir = applycform(okvir, cform);
@@ -64,9 +48,11 @@ for i = 1:brBoja
   segmentiraneSlike(:, :, :, i) = boja;
 end
 
-figure;
-imshow(segmentiraneSlike(:, :, :, 1)), title('Crveni objekti');
-figure;
-imshow(segmentiraneSlike(:, :, :, 2)), title('Zeleni objekti');
+if pokaziRez == true
+    figure;
+    imshow(segmentiraneSlike(:, :, :, 1)), title('Crveni objekti');
+    figure;
+    imshow(segmentiraneSlike(:, :, :, 2)), title('Zeleni objekti');
+end;
 
 end

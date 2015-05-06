@@ -4,7 +4,7 @@ function [dirZaOkvire] = napraviDir( ime )
 
 dirZaOkvire = fullfile(ime);
 
-if ~exist(dirZaOkvire)
+if ~exist(dirZaOkvire, 'dir')
    mkdir(dirZaOkvire) 
 end
 
