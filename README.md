@@ -6,7 +6,11 @@ Repozitorij za završni rad iz kolegija Osnove digitalne obrade govora i slika (
 
 Tema rada je *Segmentacija laserske točke na slici*. Implementacija izvedena u MATLABu.
 
-U repozitorij trenutno nije uključen `mp4` video snimak koji je korišten u kodu.
+U repozitorij trenutno nije uključen `mp4` video snimak koji je korišten u kodu (treba se nalaziti u direktoriju `src/`).
+
+## Napomena
+
+MATLAB editor ne koristi po defaultu UTF-8 datoteke (i izgleda da nema trivijalnog rješenja za taj problem) tako da je moguće da se u kodu izgube neka hrvatska slova.
 
 ## Korišteni izvori
 
