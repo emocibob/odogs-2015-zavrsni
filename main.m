@@ -5,7 +5,7 @@ clc % oèisti komandnu liniju
 clear % oèisti workspace
 close all % zatvori 'figure' prozore
 
-tic; % poèni mjeriti vrijeme izboðenja
+tic; % poèni mjeriti vrijeme izvoðenja
 
 dirZaOkvire = napraviDir('okviri');
 
@@ -15,12 +15,12 @@ brOkvira = vid.NumberOfFrames;
 prviOkvir = 480;
 zadnjiOkvir = 490;
 
-fprintf('Ukupno okvira u videu: %d\n', brOkvira);
+fprintf('Ukupno okvira: %d\n', brOkvira);
 
 fprintf('Spremanje prvog okvira...\n');
 izolirajOkvire(vid, dirZaOkvire, 1, 1);
 
-fprintf('Spremanje okvira od %d do %d...\n', prviOkvir, zadnjiOkvir);
+fprintf('Spremanje okvira od br. %d do br. %d...\n', prviOkvir, zadnjiOkvir);
 listaDatOkvira = izolirajOkvire(vid, dirZaOkvire, prviOkvir, zadnjiOkvir);
 
 % algoritam daje loše rezultate
