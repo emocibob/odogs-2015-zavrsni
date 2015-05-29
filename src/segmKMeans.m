@@ -33,7 +33,7 @@ title(['Okvir ', ime, ' oznaèen indeksima pripadnih klastera']);
 
 % Create Images that Segment the H&E Image by Color.
 
-segmentiraneSlike = cell(1, 3);
+segmentiraneSlike = cell(1, 3); % TODO cel(1, 4) ?
 rgbOznaka = repmat(pixelOznake, [1 1 3]);
 
 for k = 1:brBoja

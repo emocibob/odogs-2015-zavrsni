@@ -30,12 +30,12 @@ b = double(b);
 udaljenost = zeros([size(a), brBoja]);
 
 for i = 1:brBoja
-  udaljenost(: ,:, i) = ( (a - markeriBoja(i,1)).^2 + (b - markeriBoja(i,2)).^2 ).^0.5;
+  udaljenost(:, :, i) = ( (a - markeriBoja(i,1)).^2 + (b - markeriBoja(i,2)).^2 ).^0.5;
 end
 
 [~, oznaka] = min(udaljenost, [], 3);
 oznaka = oznakeBoja(oznaka);
-clear udaljenost;
+clear udaljenost; % TODO potrebno?
 
 % Display Results of Nearest Neighbor Classification
 

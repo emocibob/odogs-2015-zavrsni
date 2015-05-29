@@ -23,9 +23,11 @@ izolirajOkvire(vid, dirZaOkvire, 1, 1);
 fprintf('Spremanje okvira od br. %d do br. %d...\n', prviOkvir, zadnjiOkvir);
 listaDatOkvira = izolirajOkvire(vid, dirZaOkvire, prviOkvir, zadnjiOkvir);
 
+% TODO dodati blur filter u nadi da æe se dobiti bolji rezultati (manji šum) sa drugim algoritmom
+
 % algoritam daje loše rezultate
-%fprintf('Testna segmentacija prvog okvira (Color-Based Segmentation Using K-Means Clustering)...\n');
-%segmKMeans(dirZaOkvire, '0001.png');
+fprintf('Testna segmentacija prvog okvira (Color-Based Segmentation Using K-Means Clustering)...\n');
+segmKMeans(dirZaOkvire, '0001.png');
 
 [podrucjaUzoraka, brBoja] = definirajUzorkeBoja(dirZaOkvire, '0001.png', false);
 
