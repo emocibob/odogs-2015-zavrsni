@@ -1,10 +1,10 @@
-function segmLabColorSpace( dirZaOkvire, ime, podrucjaUzoraka, brBoja, pokaziRez )
+function segmLabColorSpace( dirZaOkvire, imeOkvira, podrucjaUzoraka, brBoja, pokaziRez )
 % Color-Based Segmentation Using the L*a*b* Color Space
 % https://www.mathworks.com/help/images/examples/color-based-segmentation-using-the-l-a-b-color-space.html
 
 % Acquire Image
 
-dat = fullfile(dirZaOkvire, ime);
+dat = fullfile(dirZaOkvire, imeOkvira);
 okvir = imread(dat);
 
 % Calculate Sample Colors in L*a*b* Color Space for Each Region
