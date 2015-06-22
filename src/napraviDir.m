@@ -1,5 +1,5 @@
 function [dirZaOkvire] = napraviDir( ime )
-% kreiraj novi direktorij (ako ne postoji) i vrati njegovo ime u glavni program
+% kreiraj novi direktorij (ako veæ ne postoji) i vrati njegovo
 
 dirZaOkvire = fullfile(ime);
 

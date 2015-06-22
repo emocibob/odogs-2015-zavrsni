@@ -1,47 +1,39 @@
-function segmKMeans( dirZaOkvire, ime )
-% Color-Based Segmentation Using K-Means Clustering
-% https://www.mathworks.com/help/images/examples/color-based-segmentation-using-k-means-clustering.html
+function segmKMeans( dirZaOkvire, ime, primjeniBlur )
+% automatska segmentacija boja na temelju L*a*b* modela boja i k-means grupiranja
 
-% Read Image
-
+% proèitaj sliku i po potrebi je zamuti
 dat = fullfile(dirZaOkvire, ime);
 okvir = imread(dat);
+if primjeniBlur == true
+   okvir = blurFilter(okvir, 10, false);
+end
 imshow(okvir), title('Test okvir');
 
-% Convert Image from RGB Color Space to L*a*b* Color Space
-
+% pretvaranje iz RGB u L*a*b* model boja
 cform = makecform('srgb2lab');
 labOkvir = applycform(okvir, cform);
 
-% Classify the Colors in 'a*b*' Space Using K-Means Clustering
-
+% grupiraj boje pomoæu k-means grupiranja
 ab = double(labOkvir(:, :, 2:3));
 brRedaka = size(ab, 1);
 brStupaca = size(ab, 2);
 ab = reshape(ab, brRedaka*brStupaca, 2);
-
 brBoja = 4;
-% repeat the clustering 3 times to avoid local minima
 [cluster_idx, cluster_center] = kmeans(ab,brBoja, 'distance','sqEuclidean', 'Replicates',3);
 
-% Label Every Pixel in the Image Using the Results from KMEANS
-
+% oznaèi svaki piksel na temelju rezultata grupiranja
 pixelOznake = reshape(cluster_idx, brRedaka, brStupaca);
-%figure;
 imshow(pixelOznake, []);
 title(['Okvir ', ime, ' oznaèen indeksima pripadnih klastera']);
 
-% Create Images that Segment the H&E Image by Color.
-
-segmentiraneSlike = cell(1, 3); % TODO cel(1, 4) ?
+% napravi slike koje pokazuju segmentirana podruèja
+segmentiraneSlike = cell(1, brBoja);
 rgbOznaka = repmat(pixelOznake, [1 1 3]);
-
 for k = 1:brBoja
     boja = okvir;
     boja(rgbOznaka ~= k) = 0;
     segmentiraneSlike{k} = boja;
 end
-
 for k = 1:brBoja
     figure;
     imshow(segmentiraneSlike{k});

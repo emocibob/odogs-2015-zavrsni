@@ -1,47 +1,47 @@
+% student: Edvin Moèibob
 % tema:    Segmentacija laserske toèke na slici
 % zadatak: na izdvojenim okvirima iz video sekvence, izolirati crvenu i zelenu toèku (reflektirani laser)
 
-clc % oèisti komandnu liniju
-clear % oèisti workspace
-close all % zatvori 'figure' prozore
+% oèisti cli i workspace te zatvori otvorene figure
+clc
+clear
+close all
 
-tic; % poèni mjeriti vrijeme izvoðenja
+% vrijeme izvoðenja
+tic
 
+% potrebne varijable
 dirZaOkvire = napraviDir('okviri');
-
 dat = 'dobra_snimka.mp4';
 vid = VideoReader(dat);
 brOkvira = vid.NumberOfFrames;
 prviOkvir = 480;
 zadnjiOkvir = 490;
-
 fprintf('Ukupno okvira: %d\n', brOkvira);
 
+% spremi pojedine okvire iz video snimke
 fprintf('Spremanje prvog okvira...\n');
 izolirajOkvire(vid, dirZaOkvire, 1, 1);
-
 fprintf('Spremanje okvira od br. %d do br. %d...\n', prviOkvir, zadnjiOkvir);
 listaDatOkvira = izolirajOkvire(vid, dirZaOkvire, prviOkvir, zadnjiOkvir);
 
-% TODO dodati blur filter u nadi da æe se dobiti bolji rezultati (manji šum) sa drugim algoritmom
-% testiranje
-I = imread(fullfile(dirZaOkvire, '0490.png'));
-imshow(I);
-blurTests = blurFilter(I, 5, true);
+% k-means segmentacija
+fprintf('Segmentacija prvog okvira - k-means grupiranje...\n');
+segmKMeans(dirZaOkvire, '0001.png', true);
 
-% algoritam daje loše rezultate
-fprintf('Testna segmentacija prvog okvira (Color-Based Segmentation Using K-Means Clustering)...\n');
-segmKMeans(dirZaOkvire, '0001.png');
-
-[podrucjaUzoraka, brBoja] = definirajUzorkeBoja(dirZaOkvire, '0001.png', false);
-
-fprintf('Color-Based Segmentation Using the L*a*b* Color Space...\n');
+% lab segmentacija na temelju danih uzoraka
+fprintf('Definiraj uzorke boja za sljedeæu tehniku segmentacije...\n');
+[markeriBoja, brBoja] = defUzorkeBoja(dirZaOkvire, '0001.png', false);
 
 % samo prvi okvir
-segmLabColorSpace(dirZaOkvire, '0001.png', podrucjaUzoraka, brBoja, true);
+fprintf('Segmentacija prvog okvira - L*a*b* modela boja i dani uzorci boja...\n');
+segmLabUzorci(dirZaOkvire, '0001.png', markeriBoja, brBoja, true, true);
 
+% odabrani okviri
+fprintf('Segmentacija odabranih okvira - L*a*b* modela boja i dani uzorci boja...\n');
 for i = 1:(zadnjiOkvir-prviOkvir+1)
-    segmLabColorSpace(dirZaOkvire, listaDatOkvira(i, :), podrucjaUzoraka, brBoja, true);
+    segmLabUzorci(dirZaOkvire, listaDatOkvira(i, :), markeriBoja, brBoja, true, true);
 end
 
-toc; % ispiši vrijeme izvoðenja
+% ispiši vrijeme izvoðenja
+toc
