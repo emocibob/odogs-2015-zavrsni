@@ -9,7 +9,7 @@ for i = prviOkvir:zadnjiOkvir
     listaDatOkvira = [listaDatOkvira; okvirIme];
     okvirDat = fullfile(dirZaOkvire, okvirIme);
     imwrite(trenutniOkvir, okvirDat, 'png');
-    fprintf('Spremljen okvir br. %4d\n', i); % stanje
+    fprintf('Spremljen okvir br. %4d\n', i);
 end
 
 end
