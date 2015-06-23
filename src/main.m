@@ -35,12 +35,12 @@ fprintf('Definiraj uzorke boja za sljedeæu tehniku segmentacije...\n');
 
 % samo prvi okvir
 fprintf('Segmentacija prvog okvira - L*a*b* modela boja i dani uzorci boja...\n');
-segmLabUzorci(dirZaOkvire, '0001.png', markeriBoja, brBoja, true, true);
+segmLabUzorci(dirZaOkvire, '0001.png', markeriBoja, brBoja, true, false, true);
 
 % odabrani okviri
 fprintf('Segmentacija odabranih okvira - L*a*b* modela boja i dani uzorci boja...\n');
 for i = 1:(zadnjiOkvir-prviOkvir+1)
-    segmLabUzorci(dirZaOkvire, listaDatOkvira(i, :), markeriBoja, brBoja, true, true);
+    segmLabUzorci(dirZaOkvire, listaDatOkvira(i, :), markeriBoja, brBoja, true, false, true);
 end
 
 % ispiši vrijeme izvoðenja

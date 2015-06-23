@@ -1,4 +1,4 @@
-function segmLabUzorci( dirZaOkvire, imeOkvira, markeriBoja, brBoja, primjeniBlur, pokaziRez )
+function segmLabUzorci( dirZaOkvire, imeOkvira, markeriBoja, brBoja, primjeniBlur, pokaziRez, spremi )
 % segmentacija boja pomoæu L*a*b* modela boja i danih uzoraka boja
 
 % uèitaj sliku i po potrebi je zamuti
@@ -38,6 +38,18 @@ if pokaziRez == true
     imshow(segmentiraneSlike(:, :, :, 1)), title('Crveni objekti');
     figure;
     imshow(segmentiraneSlike(:, :, :, 2)), title('Zeleni objekti');
+end
+
+% spremi sliku
+if spremi == true
+    sufiksC = 'crveno';
+    sufiksZ = 'zeleno';
+    if primjeniBlur == true
+        sufiksC = ['blur_', sufiksC];
+        sufiksZ = ['blur_', sufiksZ];
+    end
+    spremiSliku(segmentiraneSlike(:, :, :, 1), imeOkvira, sufiksC);
+    spremiSliku(segmentiraneSlike(:, :, :, 2), imeOkvira, sufiksZ);
 end
 
 end
