@@ -1,7 +1,7 @@
-function spremiSliku( okvir, imeDat, sufiksIme )
+function spremiSliku( okvir, imeDir, imeDat, sufiksIme )
 % spremi sliku i po potrebi napravi novi direktorij za sliku
 
-dirSegmOkviri = fullfile('okviri_segm');
+dirSegmOkviri = fullfile(imeDir);
 if ~exist(dirSegmOkviri, 'dir')
    mkdir(dirSegmOkviri) 
 end

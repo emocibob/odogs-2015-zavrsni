@@ -24,8 +24,6 @@ for i = 1:brBoja
 end
 [~, oznaka] = min(udaljenost, [], 3);
 oznaka = oznakeBoja(oznaka);
-
-% prikaži rezultate segmentacije
 rgbOznaka = repmat(oznaka, [1 1 3]);
 segmentiraneSlike = zeros([size(okvir), brBoja], 'uint8');
 for i = 1:brBoja
@@ -33,6 +31,8 @@ for i = 1:brBoja
   boja(rgbOznaka ~= oznakeBoja(i)) = 0;
   segmentiraneSlike(:, :, :, i) = boja;
 end
+
+% prikaži rezultate segmentacije
 if pokaziRez == true
     figure;
     imshow(segmentiraneSlike(:, :, :, 1)), title('Crveni objekti');
@@ -48,8 +48,8 @@ if spremi == true
         sufiksC = ['blur_', sufiksC];
         sufiksZ = ['blur_', sufiksZ];
     end
-    spremiSliku(segmentiraneSlike(:, :, :, 1), imeOkvira, sufiksC);
-    spremiSliku(segmentiraneSlike(:, :, :, 2), imeOkvira, sufiksZ);
+    spremiSliku(segmentiraneSlike(:, :, :, 1), 'okviri_segm_uzorci', imeOkvira, sufiksC);
+    spremiSliku(segmentiraneSlike(:, :, :, 2), 'okviri_segm_uzorci', imeOkvira, sufiksZ);
 end
 
 end

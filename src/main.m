@@ -27,7 +27,7 @@ listaDatOkvira = izolirajOkvire(vid, dirZaOkvire, prviOkvir, zadnjiOkvir);
 
 % k-means segmentacija
 fprintf('Segmentacija prvog okvira - k-means grupiranje...\n');
-segmKMeans(dirZaOkvire, '0001.png', true);
+segmKMeans(dirZaOkvire, '0001.png', 13, true, true, true);
 
 % lab segmentacija na temelju danih uzoraka
 fprintf('Definiraj uzorke boja za sljedeæu tehniku segmentacije...\n');
@@ -35,7 +35,7 @@ fprintf('Definiraj uzorke boja za sljedeæu tehniku segmentacije...\n');
 
 % samo prvi okvir
 fprintf('Segmentacija prvog okvira - L*a*b* modela boja i dani uzorci boja...\n');
-segmLabUzorci(dirZaOkvire, '0001.png', markeriBoja, brBoja, true, false, true);
+segmLabUzorci(dirZaOkvire, '0001.png', markeriBoja, brBoja, true, true, true);
 
 % odabrani okviri
 fprintf('Segmentacija odabranih okvira - L*a*b* modela boja i dani uzorci boja...\n');
