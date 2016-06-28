@@ -1,5 +1,5 @@
 function [ markeriBoja, brBoja ] = defUzorkeBoja( dirZaOkvire, ime, pokaziUzorke )
-% postavljanje podruèja uzorke boja i raèunanje prosjeènih boja za te uzorke
+% postavljanje podruèja uzorka boja i raèunanje prosjeènih boja za te uzorke
 
 dat = fullfile(dirZaOkvire, ime);
 

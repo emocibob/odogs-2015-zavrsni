@@ -35,7 +35,7 @@ for k = 1:brBoja
     segmentiraneSlike{k} = boja;
 end
 
-% prikaži segmentirane slike (ako je tako odreðeno)
+% prikaži segmentirane slike
 if pokaziRez == true
     for k = 1:brBoja
         figure;

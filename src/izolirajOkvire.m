@@ -1,5 +1,5 @@
 function [ listaDatOkvira ] = izolirajOkvire( video, dirZaOkvire, prviOkvir, zadnjiOkvir )
-% izoliraj pojedinaène okvire kao PNG slike iz MATLAB video objekta
+% izoliraj pojedinaène okvire (kao PNG slike) iz MATLAB video objekta
 
 listaDatOkvira = [];
 

@@ -1,5 +1,5 @@
 function spremiSliku( okvir, imeDir, imeDat, sufiksIme )
-% spremi sliku i po potrebi napravi novi direktorij za sliku
+% spremi sliku, po potrebi napravi novi direktorij za sliku
 
 dirSegmOkviri = fullfile(imeDir);
 if ~exist(dirSegmOkviri, 'dir')

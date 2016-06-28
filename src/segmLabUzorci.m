@@ -14,7 +14,7 @@ labOkvir = applycform(okvir, cform);
 a = labOkvir(:, :, 2);
 b = labOkvir(:, :, 3);
 
-% oznaèi svaki piksel okvira koristeæi pravilo najbližeg susjeda za dane boje
+% oznaèi svaki piksel okvira koristeæi pravilo najbližeg susjeda
 oznakeBoja = 0:brBoja-1;
 a = double(a);
 b = double(b);
